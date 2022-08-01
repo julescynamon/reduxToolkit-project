@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addPicturesData } from "../features/pictures.slice";
 
-const Form = () => {
+const Form = ({ getPictures }) => {
   const inputArt = useRef();
   const inputYear = useRef();
   const formRef = useRef();
@@ -22,6 +22,7 @@ const Form = () => {
 
     axios.post("http://localhost:5000/pictures", data).then(() => {
       dispatch(addPicturesData(data));
+      dispatch(getPictures());
       formRef.current.reset();
     });
   };
